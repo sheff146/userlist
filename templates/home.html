@@ -19,6 +19,7 @@
             <th>Register date</th>
             <th>Balance</th>
             <th>Enabled</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -30,6 +31,7 @@
             <td>{{user.register_date}}</td>
             <td>{{user.balance}}</td>
             <td>{{user.enabled}}</td>
+            <td><a href="#/users/{{user.user_id}}">Details</a></td>
         </tr>
         </tbody>
     </table>

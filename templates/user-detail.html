@@ -1,3 +1,29 @@
 <div class="row" ng-controller="UserDetailsCtrl">
-    User details
+    <h2>User transactions</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Invoice Id</th>
+            <th>Coupon Id</th>
+            <th>Type</th>
+            <th>Date</th>
+            <th>Sum</th>
+            <th>Amount</th>
+            <th>Currency</th>
+            <th>Comment</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="transaction in transactions">
+            <th scope="row">{{transaction.invoice_id}}</th>
+            <td>{{transaction.coupon_id}}</td>
+            <td>{{transaction.transaction_type}}</td>
+            <td>{{transaction.date}}</td>
+            <td>{{transaction.sum}}</td>
+            <td>{{transaction.amount}}</td>
+            <td>{{transaction.currency}}</td>
+            <td>{{transaction.comment}}</td>
+        </tr>
+        </tbody>
+    </table>
 </div>
