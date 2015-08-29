@@ -1,0 +1,25 @@
+{
+  "name": "userlist",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "gulp": "^3.9.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-connect": "^2.2.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sheff146/userlist.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sheff146/userlist/issues"
+  },
+  "homepage": "https://github.com/sheff146/userlist#readme"
+}
