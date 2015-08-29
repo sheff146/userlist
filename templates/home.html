@@ -1,0 +1,36 @@
+<div class="row" ng-controller="UserListCtrl">
+    <nav>
+        <ul class="pager">
+            <li class="previous" ng-class="{disabled: !canListBackward}"><a
+                    ng-href="#/?offset={{previousOffset}}&limit={{limit}}"><span aria-hidden="true">&larr;</span>
+                Previous</a></li>
+            <li class="next" ng-class="{disabled: !canListForward}"><a
+                    ng-href="#/?offset={{nextOffset}}&limit={{limit}}">Next <span aria-hidden="true">&rarr;</span></a>
+            </li>
+        </ul>
+    </nav>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Email</th>
+            <th>Name</th>
+            <th>Custom info</th>
+            <th>Register date</th>
+            <th>Balance</th>
+            <th>Enabled</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="user in users">
+            <th scope="row">{{user.user_id}}</th>
+            <td>{{user.email}}</td>
+            <td>{{user.user_name}}</td>
+            <td>{{user.user_custom}}</td>
+            <td>{{user.register_date}}</td>
+            <td>{{user.balance}}</td>
+            <td>{{user.enabled}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
