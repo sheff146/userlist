@@ -9,7 +9,7 @@
         '$routeProvider',
         function ($routeProvider) {
             $routeProvider
-                .when('/', {
+                .when('/home', {
                     templateUrl: 'templates/home.html',
                     controller: 'UserListCtrl'
                 })
@@ -26,7 +26,7 @@
                     controller: 'UserCreateCtrl'
                 })
                 .otherwise({
-                    redirectTo: '/'
+                    redirectTo: '/home'
                 });
         }
     ]);
@@ -61,6 +61,14 @@
                 $scope.nextOffset = queryParams.offset + queryParams.limit;
                 $scope.previousOffset = queryParams.offset - queryParams.limit;
             });
+
+            $scope.deleteUser = function (userId) {
+                if (!confirm('Are you sure?')) {
+                    return;
+                }
+
+                User.delete({userId: userId});
+            };
         }
     ]);
 
@@ -114,6 +122,7 @@
                 get: {method: 'GET', params: {userId: '@userId'}, isArray: false},
                 update: {method: 'PUT', params: {userId: '@userId'}, isArray: false},
                 create: {method: 'POST', params: {userId: '@userId'}, isArray: false},
+                delete: {method: 'DELETE', params: {userId: '@userId'}, isArray: false},
                 list: {method: 'GET', params: {offset: '@offset', limit: '@limit'}, isArray: false}
             });
         }
