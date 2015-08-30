@@ -92,7 +92,9 @@
 
             $scope.submit = function () {
                 var user = $scope.user;
-                User.update({userId: userId}, user);
+                User.update({userId: userId}, user, function () {
+                    $location.url('/home');
+                });
             };
         }
     ]);
