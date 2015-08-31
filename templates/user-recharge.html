@@ -1,0 +1,21 @@
+<div class="row">
+    <h2>Recharge user</h2>
+    <form ng-submit="submit()">
+        <div class="formgroup">
+            <label for="amount">Amount</label>
+            <input type="number" class="form-control" id="amount" placeholder="Amount" ng-model="charge.amount">
+        </div>
+        <div class="formgroup">
+            <label for="comment">Comment</label>
+            <input type="text" class="form-control" id="comment" placeholder="Comment" ng-model="charge.comment">
+        </div>
+        <div class="formgroup hidden">
+            <label for="userid">User Id</label>
+            <input type="hidden" id="userid" ng-model="charge.user_id"/>
+        </div>
+        <div class="formgroup">
+            <button type="submit" class="btn btn-success">Save</button>
+            <a class="btn btn-danger" href="#/home">Cancel</a>
+        </div>
+    </form>
+</div>

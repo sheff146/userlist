@@ -21,6 +21,10 @@
                     templateUrl: 'templates/user-edit.html',
                     controller: 'UserEditCtrl'
                 })
+                .when('/users/:userId/recharge', {
+                    templateUrl: 'templates/user-recharge.html',
+                    controller: 'UserRechargeCtrl'
+                })
                 .when('/createuser', {
                     templateUrl: 'templates/user-edit.html',
                     controller: 'UserCreateCtrl'
@@ -94,14 +98,35 @@
     userListApp.controller('UserCreateCtrl', [
         '$scope', '$location', '$routeParams', 'User',
         function ($scope, $location, $routeParams, User) {
-            var userId = Date.now();
+            var userId = $routeParams.userId;
             $scope.user = {
                 user_id: userId
             };
 
             $scope.submit = function () {
                 var user = $scope.user;
-                User.create({userId: userId}, user);
+                User.create({userId: userId}, user, function () {
+                    $location.url('/home');
+                });
+            };
+        }
+    ]);
+
+    userListApp.controller('UserRechargeCtrl', [
+        '$scope', '$location', '$routeParams', 'Charge',
+        function ($scope, $location, $routeParams, Charge) {
+            var userId = $routeParams.userId;
+            $scope.charge = {
+                user_id: userId,
+                amount: 0,
+                comment: ''
+            };
+
+            $scope.submit = function () {
+                var charge = $scope.charge;
+                Charge.create({userId: userId}, charge, function () {
+                    $location.url('/users/' + userId);
+                });
             };
         }
     ]);
@@ -131,4 +156,14 @@
             });
         }
     ]);
+
+    userListApp.factory('Charge', [
+        '$resource',
+        function ($resource) {
+            return $resource(urlPrefix + '/users/:userId/recharge', {}, {
+                create: {method: 'POST', params: {userId: '@userId'}, isArray: false}
+            });
+        }
+    ]);
+
 })();
