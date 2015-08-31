@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "dependencies": {
-    "gulp": "^3.9.0"
   },
   "devDependencies": {
     "gulp": "^3.9.0",
