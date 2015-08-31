@@ -101,7 +101,7 @@
 
             $scope.submit = function () {
                 var user = $scope.user;
-                User.create({}, user);
+                User.create({userId: userId}, user);
             };
         }
     ]);
