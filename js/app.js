@@ -6,8 +6,8 @@
     var userListApp = angular.module('userListApp', ['ngRoute', 'ngResource']);
 
     userListApp.config([
-        '$routeProvider',
-        function ($routeProvider) {
+        '$routeProvider', '$httpProvider',
+        function ($routeProvider, $httpProvider) {
             $routeProvider
                 .when('/home', {
                     templateUrl: 'templates/home.html',
@@ -32,6 +32,9 @@
                 .otherwise({
                     redirectTo: '/home'
                 });
+
+            $httpProvider.defaults.headers.post = {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'};
+            $httpProvider.defaults.headers.put = {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'};
         }
     ]);
 
@@ -87,8 +90,13 @@
             });
 
             $scope.submit = function () {
-                var user = $scope.user;
-                User.update({userId: userId}, user, function () {
+                var user = {
+                    user_name: $scope.user.user_name,
+                    email: $scope.user.email,
+                    enabled: $scope.user.enabled
+                };
+                var data = prepareUrlParams(user);
+                User.update({userId: userId}, data, function () {
                     $location.url('/home');
                 });
             };
@@ -98,14 +106,15 @@
     userListApp.controller('UserCreateCtrl', [
         '$scope', '$location', '$routeParams', 'User',
         function ($scope, $location, $routeParams, User) {
-            var userId = $routeParams.userId;
+            var userId = Date.now().toString();
             $scope.user = {
                 user_id: userId
             };
 
             $scope.submit = function () {
                 var user = $scope.user;
-                User.create({userId: userId}, user, function () {
+                var data = prepareUrlParams(user);
+                User.create({}, data, function () {
                     $location.url('/home');
                 });
             };
@@ -123,8 +132,12 @@
             };
 
             $scope.submit = function () {
-                var charge = $scope.charge;
-                Charge.create({userId: userId}, charge, function () {
+                var charge = {
+                    amount: $scope.charge.amount,
+                    comment: $scope.charge.comment
+                };
+                var data = prepareUrlParams(charge);
+                Charge.create({userId: userId}, data, function () {
                     $location.url('/users/' + userId);
                 });
             };
@@ -166,4 +179,15 @@
         }
     ]);
 
+    var prepareUrlParams = function (paramObj) {
+        var str = [];
+
+        for (var p in paramObj) {
+            if (paramObj.hasOwnProperty(p)) {
+                str.push(encodeURIComponent(p) + "=" + encodeURIComponent(paramObj[p]));
+            }
+        }
+
+        return str.join("&");
+    }
 })();
