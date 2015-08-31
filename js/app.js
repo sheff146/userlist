@@ -6,8 +6,8 @@
     var userListApp = angular.module('userListApp', ['ngRoute', 'ngResource']);
 
     userListApp.config([
-        '$routeProvider', '$httpProvider',
-        function ($routeProvider, $httpProvider) {
+        '$routeProvider',
+        function ($routeProvider) {
             $routeProvider
                 .when('/home', {
                     templateUrl: 'templates/home.html',
@@ -32,9 +32,6 @@
                 .otherwise({
                     redirectTo: '/home'
                 });
-
-            $httpProvider.defaults.headers.post = {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'};
-            $httpProvider.defaults.headers.put = {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'};
         }
     ]);
 
@@ -95,8 +92,7 @@
                     email: $scope.user.email,
                     enabled: $scope.user.enabled
                 };
-                var data = prepareUrlParams(user);
-                User.update({userId: userId}, data, function () {
+                User.update({userId: userId}, user, function () {
                     $location.url('/home');
                 });
             };
@@ -113,8 +109,7 @@
 
             $scope.submit = function () {
                 var user = $scope.user;
-                var data = prepareUrlParams(user);
-                User.create({}, data, function () {
+                User.create({}, user, function () {
                     $location.url('/home');
                 });
             };
@@ -136,8 +131,8 @@
                     amount: $scope.charge.amount,
                     comment: $scope.charge.comment
                 };
-                var data = prepareUrlParams(charge);
-                Charge.create({userId: userId}, data, function () {
+
+                Charge.create({userId: userId}, charge, function () {
                     $location.url('/users/' + userId);
                 });
             };
@@ -178,16 +173,4 @@
             });
         }
     ]);
-
-    var prepareUrlParams = function (paramObj) {
-        var str = [];
-
-        for (var p in paramObj) {
-            if (paramObj.hasOwnProperty(p)) {
-                str.push(encodeURIComponent(p) + "=" + encodeURIComponent(paramObj[p]));
-            }
-        }
-
-        return str.join("&");
-    }
 })();
