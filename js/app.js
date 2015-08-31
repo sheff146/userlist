@@ -61,14 +61,6 @@
                 $scope.nextOffset = queryParams.offset + queryParams.limit;
                 $scope.previousOffset = queryParams.offset - queryParams.limit;
             });
-
-            $scope.deleteUser = function (userId) {
-                if (!confirm('Are you sure?')) {
-                    return;
-                }
-
-                User.delete({userId: userId});
-            };
         }
     ]);
 
@@ -117,14 +109,10 @@
     userListApp.factory('User', [
         '$resource',
         function ($resource) {
-            return $resource(urlPrefix + '/users/:userId', {
-                offset: 0,
-                limit: 10
-            }, {
+            return $resource(urlPrefix + '/users/:userId', {}, {
                 get: {method: 'GET', params: {userId: '@userId'}, isArray: false},
                 update: {method: 'PUT', params: {userId: '@userId'}, isArray: false},
                 create: {method: 'POST', params: {userId: '@userId'}, isArray: false},
-                delete: {method: 'DELETE', params: {userId: '@userId'}, isArray: false},
                 list: {method: 'GET', params: {offset: '@offset', limit: '@limit'}, isArray: false}
             });
         }
