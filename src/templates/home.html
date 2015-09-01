@@ -1,11 +1,11 @@
 <div class="row">
     <nav>
         <ul class="pager">
-            <li class="previous" ng-class="{disabled: !canListBackward}"><a
+            <li class="previous" ng-class="{invisible: !canListBackward}"><a
                     ng-href="#/home?offset={{previousOffset}}&limit={{limit}}"><span aria-hidden="true">&larr;</span>
                 Previous</a></li>
             <li><a href="#/createuser" class="btn">Create user</a></li>
-            <li class="next" ng-class="{disabled: !canListForward}"><a
+            <li class="next" ng-class="{invisible: !canListForward}"><a
                     ng-href="#/home?offset={{nextOffset}}&limit={{limit}}">Next <span aria-hidden="true">&rarr;</span></a>
             </li>
         </ul>
