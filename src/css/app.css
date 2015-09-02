@@ -14,3 +14,11 @@ footer {
 .user-item {
     min-height: 200px;
 }
+
+.user-item:hover {
+    background-color: #CCCCCC;
+}
+
+a.user-item-link {
+    text-decoration: none;
+}

@@ -1,32 +1,53 @@
 <div class="row">
     <div class="page-header">
-        <h2>Transactions</h2>
+        <h2>User details</h2>
     </div>
 
-    <table class="table table-striped" ng-show="transactions">
-        <thead>
-        <tr>
-            <th>Invoice Id</th>
-            <th>Coupon Id</th>
-            <th>Type</th>
-            <th>Date</th>
-            <th>Sum</th>
-            <th>Amount</th>
-            <th>Currency</th>
-            <th>Comment</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="transaction in transactions">
-            <th scope="row">{{transaction.invoice_id}}</th>
-            <td>{{transaction.coupon_id}}</td>
-            <td>{{transaction.transaction_type}}</td>
-            <td>{{transaction.date}}</td>
-            <td>{{transaction.sum}}</td>
-            <td>{{transaction.amount}}</td>
-            <td>{{transaction.currency}}</td>
-            <td>{{transaction.comment}}</td>
-        </tr>
-        </tbody>
-    </table>
+    <div ng-show="user">
+        <h4>{{user.user_name? user.user_name: 'No username'}}</h4>
+        <h6>{{user.email? user.email: 'No email'}}</h6>
+        <h6>Balance: <strong>{{user.balance}}</strong></h6>
+        <h6>Register date: <strong>{{user.register_date | date : 'short'}}</strong></h6>
+        <h6 class="label" ng-class="user.enabled ? 'label-success' : 'label-default'">
+            <strong>{{user.enabled ? 'Enabled' : 'Disabled'}}</strong>
+        </h6>
+
+        <p></p>
+
+        <p>{{user.user_custom? user.user_custom: 'No info'}}</p>
+
+        <p>
+            <a href="#/users/{{user.user_id}}/edit" class="btn btn-default" role="button">Edit</a>
+            <a href="#/users/{{user.user_id}}/recharge" class="btn btn-default" role="button">Charge</a>
+        </p>
+    </div>
+
+    <h3>Transactions</h3>
+
+    <div class="table-responsive">
+        <table class="table table-striped" ng-show="transactions">
+            <thead>
+            <tr>
+                <th>Invoice Id</th>
+                <th>Coupon Id</th>
+                <th>Type</th>
+                <th>Date</th>
+                <th>Sum</th>
+                <th>Amount</th>
+                <th>Comment</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="transaction in transactions">
+                <th scope="row">{{transaction.invoice_id}}</th>
+                <td>{{transaction.coupon_id}}</td>
+                <td>{{transaction.transaction_type}}</td>
+                <td>{{transaction.date | date : 'medium'}}</td>
+                <td>{{transaction.sum}}</td>
+                <td>{{transaction.amount | currency : transaction.currency || '' : 2}}</td>
+                <td>{{transaction.comment}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
