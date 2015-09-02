@@ -1,6 +1,6 @@
 # userlist
 
-The interface for acccounting. Test task for Xsolla.
+The interface for accounting. Test task for Xsolla.
 
 Functions:
 
