@@ -1,20 +1,25 @@
 (function () {
     'use strict';
 
-    angular.module('userListApp').controller('UserCreateCtrl', [
-        '$scope', '$location', '$routeParams', 'User',
-        function ($scope, $location, $routeParams, User) {
-            var userId = Date.now().toString();
-            $scope.user = {
-                user_id: userId
-            };
+    angular
+        .module('userListApp')
+        .controller('UserCreateCtrl', ['$scope', '$location', 'User', UserCreateCtrl]);
 
-            $scope.submit = function () {
-                var user = $scope.user;
-                User.create({}, user, function () {
-                    $location.url('/home');
-                });
-            };
-        }
-    ]);
+    function UserCreateCtrl($scope, $location, User) {
+        var userId = Date.now().toString();
+
+        $scope.user = {
+            user_id: userId
+        };
+
+        $scope.submit = submit;
+
+        function submit() {
+            var user = $scope.user;
+
+            User.create({}, user, function () {
+                $location.url('/home');
+            });
+        };
+    }
 })();
