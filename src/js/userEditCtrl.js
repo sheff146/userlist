@@ -21,9 +21,24 @@
                 enabled: $scope.user.enabled
             };
 
-            User.update({userId: userId}, user, function () {
-                $location.url('/home');
-            });
+            User.update({userId: userId}, user, successCb, errorCb);
+
+            function successCb(data, responseHeaders) {
+                if (data && data.code) {
+                    errorCb(null, data.code + ': ' + data.message);
+                    return;
+                }
+
+                $location.url('/users/' + userId);
+            };
+
+            function errorCb(httpResponse, message) {
+                if (httpResponse && !message) {
+                    message = 'Network error';
+                }
+
+                alert(message);
+            };
         };
     }
 })();
