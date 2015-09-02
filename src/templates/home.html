@@ -20,10 +20,13 @@
         <div class="col-sm-6 col-md-4 col-lg-3" ng-repeat="user in users">
             <div class="thumbnail user-item">
                 <div class="caption">
-                    <h3>{{user.user_name? user.user_name: 'No username'}}</h3>
+                    <h4>{{user.user_name? user.user_name: 'No username'}}</h4>
                     <h6>{{user.email? user.email: 'No email'}}</h6>
                     <h6>Balance: <strong>{{user.balance}}</strong></h6>
                     <h6>Register date: <strong>{{user.register_date | date : 'short'}}</strong></h6>
+                    <h6 class="label" ng-class="user.enabled ? 'label-success' : 'label-default'">
+                        <strong>{{user.enabled ? 'Enabled' : 'Disabled'}}</strong>
+                    </h6>
 
                     <p>{{user.user_custom? user.user_custom: 'No info'}}</p>
 
