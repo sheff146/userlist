@@ -1,6 +1,6 @@
 <div class="row">
     <h2>Recharge user</h2>
-    <form ng-submit="submit()">
+    <form ng-submit="submit()" ng-show="charge">
         <div class="formgroup">
             <label for="amount">Amount</label>
             <input type="number" class="form-control" id="amount" placeholder="Amount" ng-model="charge.amount">

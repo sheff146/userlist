@@ -18,6 +18,8 @@
 
             $scope.limit = +search.limit;
             $scope.offset = +search.offset;
+            $scope.canListBackward = false;
+            $scope.canListForward = false;
 
             var queryParams = {offset: $scope.offset, limit: $scope.limit};
 
