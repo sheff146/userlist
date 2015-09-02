@@ -1,21 +1,33 @@
 <div class="row">
     <h2>Recharge user</h2>
-    <form ng-submit="submit()" ng-show="charge">
-        <div class="formgroup">
-            <label for="amount">Amount</label>
-            <input type="number" class="form-control" id="amount" placeholder="Amount" ng-model="charge.amount">
+
+    <form ng-submit="submit()" ng-show="charge" class="form-horizontal">
+        <div class="form-group">
+            <label for="amount" class="col-sm-2 control-label">Amount</label>
+
+            <div class="col-sm-10 col-md-4">
+                <input type="number" class="form-control" id="amount" placeholder="Amount" ng-model="charge.amount">
+            </div>
         </div>
-        <div class="formgroup">
-            <label for="comment">Comment</label>
-            <input type="text" class="form-control" id="comment" placeholder="Comment" ng-model="charge.comment">
+
+        <div class="form-group">
+            <label for="comment" class="col-sm-2 control-label">Comment</label>
+
+            <div class="col-sm-10 col-md-4">
+                <input type="text" class="form-control" id="comment" placeholder="Comment" ng-model="charge.comment">
+            </div>
         </div>
-        <div class="formgroup hidden">
+
+        <div class="form-group hidden">
             <label for="userid">User Id</label>
             <input type="hidden" id="userid" ng-model="charge.user_id"/>
         </div>
-        <div class="formgroup">
-            <button type="submit" class="btn btn-success">Save</button>
-            <a class="btn btn-danger" ng-href="#/users/{{charge.user_id}}">Cancel</a>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10 col-md-4">
+                <button type="submit" class="btn btn-success">Save</button>
+                <a class="btn btn-danger" ng-href="#/users/{{charge.user_id}}">Cancel</a>
+            </div>
         </div>
     </form>
 </div>

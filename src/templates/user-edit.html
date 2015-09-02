@@ -1,38 +1,44 @@
 <div class="row">
     <h2>User</h2>
-    <form ng-submit="submit()" ng-show="user">
-        <div class="formgroup">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" placeholder="Email" ng-model="user.email">
+
+    <form ng-submit="submit()" ng-show="user" class="form-horizontal">
+        <div class="form-group">
+            <label for="email" class="col-sm-2 control-label">Email</label>
+
+            <div class="col-sm-10 col-md-4">
+                <input type="email" class="form-control" id="email" placeholder="Email" ng-model="user.email">
+            </div>
         </div>
-        <div class="formgroup">
-            <label for="username">Username</label>
-            <input type="text" class="form-control" id="username" placeholder="Username" ng-model="user.user_name">
+
+        <div class="form-group">
+            <label for="username" class="col-sm-2 control-label">Username</label>
+
+            <div class="col-sm-10 col-md-4">
+                <input type="text" class="form-control" id="username" placeholder="Username"
+                       ng-model="user.user_name">
+            </div>
         </div>
-        <!--<div class="formgroup">
-            <label for="custom">Custom info</label>
-            <input type="text" class="form-control" id="custom" placeholder="Custom info" ng-model="user.user_custom">
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10 col-md-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" ng-model="user.enabled"> Enabled
+                    </label>
+                </div>
+            </div>
         </div>
-        <div class="formgroup">
-            <label for="register">Register date</label>
-            <input type="datetime" class="form-control" id="register" placeholder="Register date" ng-model="user.register_date">
-        </div>
-        <div class="formgroup">
-            <label for="balance">Balance</label>
-            <input type="number" class="form-control" id="balance" placeholder="Balance" ng-model="user.balance">
-        </div>-->
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" ng-model="user.enabled"> Enabled
-            </label>
-        </div>
-        <div class="formgroup hidden">
+
+        <div class="form-group hidden">
             <label for="userid">User Id</label>
             <input type="hidden" id="userid" ng-model="user.user_id"/>
         </div>
-        <div class="formgroup">
-            <button type="submit" class="btn btn-success">Save</button>
-            <a class="btn btn-danger" href="#/home">Cancel</a>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10 col-md-4">
+                <button type="submit" class="btn btn-success">Save</button>
+                <a class="btn btn-danger" href="#/home">Cancel</a>
+            </div>
         </div>
     </form>
 </div>
