@@ -1,11 +1,11 @@
 # userlist
 
-The interface for accounting. Test task for Xsolla.
+The interface for accounting. A test task for Xsolla.
 
 Functions:
 
-1. View list of users
-2. Create user
-3. Edit user
+1. View the list of users
+2. Create a new user
+3. Edit an existing user
 4. View user operations
 5. Charge user
